@@ -8,6 +8,7 @@ router.use(bodyParser.json());
 // Support URL-encoded bodies
 router.use(bodyParser.urlencoded({ extended: true }));
 
+// get all users
 router.get("/", (req, res) => {
   connection.query("SELECT * from users", (err, results) => {
     if (err) {
@@ -18,6 +19,7 @@ router.get("/", (req, res) => {
   });
 });
 
+//post a reservation
 router.post("/", (req, res) => {
   const formData = req.body;
   connection.query("INSERT INTO users SET ?", formData, (err, results) => {
