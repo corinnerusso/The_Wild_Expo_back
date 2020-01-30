@@ -10,13 +10,16 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 // get all users
 router.get("/", (req, res) => {
-  connection.query("SELECT * from users", (err, results) => {
-    if (err) {
-      res.status(500).send("Error retrieving users");
-    } else {
-      res.json(results);
+  connection.query(
+    "SELECT * from users ORDER BY date_resa DESC",
+    (err, results) => {
+      if (err) {
+        res.status(500).send("Error retrieving users");
+      } else {
+        res.json(results);
+      }
     }
-  });
+  );
 });
 
 //post a reservation
